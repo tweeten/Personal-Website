@@ -56,19 +56,7 @@ export const ContactSection = () => {
     setErrors(newErrors);
     return valid;
   };
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
   const handleSubmit = async (e: React.FormEvent) => {
-=======
-HEAD
-=======
->>>>>>> 7a2ca7c2 (file cleanup):src/components/Home/ContactSection.tsx
-  const handleSubmit = (e: React.FormEvent) => {
->>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
-=======
-  const handleSubmit = async (e: React.FormEvent) => {
->>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
@@ -80,31 +68,6 @@ HEAD
           },
           body: JSON.stringify(formData),
         });
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-=======
-        // Reset success message after a few seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
-      }, 1500);
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validate()) {
-      setIsSubmitting(true);
-      try {
-        const response = await fetch('http://localhost:5000/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
->>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
-=======
->>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
         if (response.ok) {
           setIsSubmitted(true);
           setFormData({
@@ -112,21 +75,10 @@ HEAD
             email: '',
             message: ''
           });
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-=======
-          // Reset success message after a few seconds
->>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
-=======
->>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
           setTimeout(() => {
             setIsSubmitted(false);
           }, 5000);
         } else {
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-=======
->>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
           // handle error
         }
       } catch (error) {
@@ -134,22 +86,6 @@ HEAD
       } finally {
         setIsSubmitting(false);
       }
-<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
-=======
-          const data = await response.json();
-          alert(data.error || 'Failed to send message.');
-        }
-      } catch (error) {
-        alert('Failed to send message.');
-      } finally {
-        setIsSubmitting(false);
-      }
-34b28601 (wiring up backend)
->>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
-=======
->>>>>>> 7a2ca7c2 (file cleanup):src/components/Home/ContactSection.tsx
-=======
->>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
     }
   };
   return <section id="contact" className="py-20 md:py-32 bg-[#e6dfd0]/30">
