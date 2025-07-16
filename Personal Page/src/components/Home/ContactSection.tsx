@@ -102,7 +102,7 @@ export const ContactSection = () => {
         duration: 0.6
       }}>
           <h2 className="text-3xl md:text-4xl font-light leading-tight text-center">
-            Get in Touch (Coming Soon!)
+            Get in Touch
           </h2>
           <div className="mt-4 w-16 h-1 bg-[#b75c3d] mx-auto" />
           <p className="mt-6 text-center text-lg text-[#3c3a36]/80 max-w-xl mx-auto">
