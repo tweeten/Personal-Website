@@ -56,26 +56,36 @@ export const ContactSection = () => {
     setErrors(newErrors);
     return valid;
   };
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
-      // Simulate API call
-      setTimeout(() => {
-        console.log('Form submitted:', formData);
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        // Reset form after submission
-        setFormData({
-          name: '',
-          email: '',
-          message: ''
+      try {
+        const response = await fetch('https://personal-website-wwin.onrender.com/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
         });
-        // Reset success message after a few seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
-      }, 1500);
+        if (response.ok) {
+          setIsSubmitted(true);
+          setFormData({
+            name: '',
+            email: '',
+            message: ''
+          });
+          setTimeout(() => {
+            setIsSubmitted(false);
+          }, 5000);
+        } else {
+          // handle error
+        }
+      } catch (error) {
+        // handle error
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
   return <section id="contact" className="py-20 md:py-32 bg-[#e6dfd0]/30">
