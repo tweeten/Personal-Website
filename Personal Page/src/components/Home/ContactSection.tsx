@@ -56,7 +56,6 @@ export const ContactSection = () => {
     setErrors(newErrors);
     return valid;
   };
-HEAD
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
@@ -77,40 +76,6 @@ HEAD
           setIsSubmitted(false);
         }, 5000);
       }, 1500);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validate()) {
-      setIsSubmitting(true);
-      try {
-        const response = await fetch('http://localhost:5000/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-        if (response.ok) {
-          setIsSubmitted(true);
-          setFormData({
-            name: '',
-            email: '',
-            message: ''
-          });
-          // Reset success message after a few seconds
-          setTimeout(() => {
-            setIsSubmitted(false);
-          }, 5000);
-        } else {
-          const data = await response.json();
-          alert(data.error || 'Failed to send message.');
-        }
-      } catch (error) {
-        alert('Failed to send message.');
-      } finally {
-        setIsSubmitting(false);
-      }
-34b28601 (wiring up backend)
     }
   };
   return <section id="contact" className="py-20 md:py-32 bg-[#e6dfd0]/30">
