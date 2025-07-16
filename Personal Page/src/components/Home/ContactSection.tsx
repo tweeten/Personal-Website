@@ -58,6 +58,7 @@ export const ContactSection = () => {
   };
 <<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
 <<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
+<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
   const handleSubmit = async (e: React.FormEvent) => {
 =======
 HEAD
@@ -65,6 +66,9 @@ HEAD
 >>>>>>> 7a2ca7c2 (file cleanup):src/components/Home/ContactSection.tsx
   const handleSubmit = (e: React.FormEvent) => {
 >>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
+=======
+  const handleSubmit = async (e: React.FormEvent) => {
+>>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
@@ -76,6 +80,7 @@ HEAD
           },
           body: JSON.stringify(formData),
         });
+<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
 <<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
 =======
         // Reset success message after a few seconds
@@ -98,6 +103,8 @@ HEAD
           body: JSON.stringify(formData),
         });
 >>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
+=======
+>>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
         if (response.ok) {
           setIsSubmitted(true);
           setFormData({
@@ -106,14 +113,20 @@ HEAD
             message: ''
           });
 <<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
+<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
 =======
           // Reset success message after a few seconds
 >>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
+=======
+>>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
           setTimeout(() => {
             setIsSubmitted(false);
           }, 5000);
         } else {
 <<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
+<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
+=======
+>>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
           // handle error
         }
       } catch (error) {
@@ -121,6 +134,7 @@ HEAD
       } finally {
         setIsSubmitting(false);
       }
+<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
 =======
           const data = await response.json();
           alert(data.error || 'Failed to send message.');
@@ -134,6 +148,8 @@ HEAD
 >>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
 =======
 >>>>>>> 7a2ca7c2 (file cleanup):src/components/Home/ContactSection.tsx
+=======
+>>>>>>> 133c42ae (Updated contact header):src/components/Home/ContactSection.tsx
     }
   };
   return <section id="contact" className="py-20 md:py-32 bg-[#e6dfd0]/30">
@@ -154,7 +170,7 @@ HEAD
           </h2>
           <div className="mt-4 w-16 h-1 bg-[#b75c3d] mx-auto" />
           <p className="mt-6 text-center text-lg text-[#3c3a36]/80 max-w-xl mx-auto">
-            Interested in working together? I'll be wiring this form up to a database shortly. For now, please reach out to me at tweeten.tyler@gmail.com.
+            Interested in working together? Drop me a line here!
           </p>
           <div className="mt-12">
             <form onSubmit={handleSubmit} className="space-y-6">
