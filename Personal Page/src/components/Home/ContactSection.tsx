@@ -57,9 +57,12 @@ export const ContactSection = () => {
     return valid;
   };
 <<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
+<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
   const handleSubmit = async (e: React.FormEvent) => {
 =======
 HEAD
+=======
+>>>>>>> 7a2ca7c2 (file cleanup):src/components/Home/ContactSection.tsx
   const handleSubmit = (e: React.FormEvent) => {
 >>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
     e.preventDefault();
@@ -80,6 +83,7 @@ HEAD
           setIsSubmitted(false);
         }, 5000);
       }, 1500);
+<<<<<<< HEAD:Personal Page/src/components/Home/ContactSection.tsx
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -128,6 +132,8 @@ HEAD
       }
 34b28601 (wiring up backend)
 >>>>>>> d4d46e37 (wiring up backend):src/components/Home/ContactSection.tsx
+=======
+>>>>>>> 7a2ca7c2 (file cleanup):src/components/Home/ContactSection.tsx
     }
   };
   return <section id="contact" className="py-20 md:py-32 bg-[#e6dfd0]/30">
