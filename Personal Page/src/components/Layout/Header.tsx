@@ -28,7 +28,7 @@ export const Header = () => {
       }} transition={{
         duration: 0.5
       }}>
-         Tyler Tweeten's Portfolio (under construction)
+         tylertweeten.com
         </motion.div>
         <motion.nav initial={{
         opacity: 0,
