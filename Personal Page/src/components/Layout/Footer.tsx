@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Github, Linkedin } from 'lucide-react';
 export const Footer = () => {
   return <footer className="border-t border-[#b75c3d]/10 py-12 mt-20">
       <div className="container mx-auto px-6">
@@ -34,6 +35,14 @@ export const Footer = () => {
               <br />
               Built with grit and AI.
             </motion.p>
+            <div className="flex space-x-6 mt-6">
+              <a href="https://github.com/tweeten" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <Github className="h-7 w-7 text-[#b75c3d] hover:text-[#3c3a36] transition-colors duration-200" />
+              </a>
+              <a href="https://linkedin.com/in/tylertweeten" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <Linkedin className="h-7 w-7 text-[#b75c3d] hover:text-[#3c3a36] transition-colors duration-200" />
+              </a>
+            </div>
           </div>
           <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
