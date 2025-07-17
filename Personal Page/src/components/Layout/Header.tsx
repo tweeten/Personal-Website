@@ -59,30 +59,46 @@ export const Header = () => {
           <span className="w-6 h-[2px] bg-[#3c3a36] block mb-1.5" />
           <span className="w-6 h-[2px] bg-[#3c3a36] block" />
         </motion.button>
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Navigation Drawer (Right Side) */}
         {menuOpen && (
-          <div className="fixed inset-y-0 left-0 w-3/4 max-w-xs bg-[#f7f3eb] shadow-lg z-40 flex flex-col p-8 transition-transform duration-300" style={{transform: 'translateX(0)'}}>
-            <button
-              className="absolute top-6 right-6 text-3xl text-[#b75c3d]"
+          <>
+            {/* Overlay */}
+            <div
+              className="fixed inset-0 z-40 bg-black/30 md:hidden"
               onClick={() => setMenuOpen(false)}
-              aria-label="Close menu"
+              aria-label="Close menu overlay"
+            />
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3 }}
+              className="fixed inset-y-0 right-0 w-3/4 max-w-xs bg-[#f7f3eb] shadow-lg z-50 flex flex-col p-8 md:hidden"
+              style={{ boxShadow: 'rgba(60, 58, 54, 0.12) -4px 0px 24px 0px' }}
             >
-              ×
-            </button>
-            <ul className="mt-12 space-y-8 text-2xl font-light">
-              {menuItems.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="block hover:text-[#b75c3d] transition-colors duration-300 px-2 py-2 rounded-lg"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <button
+                className="absolute top-6 right-6 text-3xl text-[#b75c3d]"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                ×
+              </button>
+              <ul className="mt-12 space-y-8 text-2xl font-light">
+                {menuItems.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="block hover:text-[#b75c3d] transition-colors duration-300 px-2 py-2 rounded-lg"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </>
         )}
       </div>
     </header>
