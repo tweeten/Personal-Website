@@ -59,9 +59,9 @@ export const Header = () => {
           <span className="w-6 h-[2px] bg-[#3c3a36] block mb-1.5" />
           <span className="w-6 h-[2px] bg-[#3c3a36] block" />
         </motion.button>
-        {/* Mobile Navigation Overlay */}
+        {/* Mobile Navigation Drawer */}
         {menuOpen && (
-          <div className="fixed inset-0 z-40 bg-[#f7f3eb] flex flex-col items-center justify-center md:hidden">
+          <div className="fixed inset-y-0 left-0 w-3/4 max-w-xs bg-[#f7f3eb] shadow-lg z-40 flex flex-col p-8 transition-transform duration-300" style={{transform: 'translateX(0)'}}>
             <button
               className="absolute top-6 right-6 text-3xl text-[#b75c3d]"
               onClick={() => setMenuOpen(false)}
@@ -69,12 +69,12 @@ export const Header = () => {
             >
               ×
             </button>
-            <ul className="space-y-8 text-3xl font-light">
+            <ul className="mt-12 space-y-8 text-2xl font-light">
               {menuItems.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className="block hover:text-[#b75c3d] transition-colors duration-300"
+                    className="block hover:text-[#b75c3d] transition-colors duration-300 px-2 py-2 rounded-lg"
                     onClick={() => setMenuOpen(false)}
                   >
                     {item.name}

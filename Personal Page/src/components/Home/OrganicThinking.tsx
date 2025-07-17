@@ -62,12 +62,12 @@ export const OrganicThinking = () => {
             </div>
             {/* PDF Preview */}
             <div className="flex-1 p-4 pt-0 flex flex-col justify-center bg-beige">
-              <div className="w-full h-[36rem] rounded-lg border border-border bg-beige overflow-hidden flex items-center justify-center" style={{ marginTop: '20px' }}>
+              <div className="w-full h-72 sm:h-[36rem] rounded-lg border border-border bg-beige overflow-x-auto flex items-center justify-center" style={{ marginTop: '20px' }}>
                 <iframe
-                  src={resumeUrl + "#zoom=125"}
+                  src={resumeUrl + (window.innerWidth < 640 ? "#zoom=80" : "#zoom=125")}
                   width="100%"
-                  height="100%"
-                  className="w-full h-full rounded-lg"
+                  height={window.innerWidth < 640 ? "350" : "100%"}
+                  className="w-full h-full rounded-lg min-w-[320px]"
                   style={{ background: '#F7F3EB' }}
                   title="Resume Preview"
                 />
