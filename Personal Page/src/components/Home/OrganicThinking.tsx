@@ -18,7 +18,7 @@ export const OrganicThinking = () => {
       </div>
       <h2 className="text-4xl md:text-5xl font-bold font-sans text-dark text-center mb-8">About Me</h2>
       <p className="text-lg text-dark/80 font-serif text-center max-w-2xl mx-auto mb-16">
-        I’m Tyler Tweeten, an AI powered Technical Product Manager passionate about building digital experiences that blend the harmony of nature with the precision of architecture. My work is guided by the belief that design should be both beautiful and purposeful, enhancing the human experience through thoughtful, intuitive solutions.
+        I’m Tyler Tweeten, an AI powered Technical Product Manager passionate about building digital experiences to help users solve real problems.  My work is guided by the belief that design should be both beautiful and purposeful, enhancing the human experience through thoughtful, intuitive solutions.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
         {/* Value 1 */}
@@ -31,7 +31,7 @@ export const OrganicThinking = () => {
         <div className="flex flex-col items-center text-center p-8 bg-white border border-border rounded-2xl shadow-sm">
           <div className="w-12 h-12 rounded-lg bg-gold mb-6"></div>
           <h3 className="text-xl font-bold font-sans text-dark mb-2">Simplicity</h3>
-          <p className="text-dark/70 font-serif">Embracing minimalism without sacrificing depth or character.</p>
+          <p className="text-dark/70 font-serif">Shipping solutions that are easy to build, easy to maintain, and helps users and customers meet their needs.</p>
         </div>
         {/* Value 3 */}
         <div className="flex flex-col items-center text-center p-8 bg-white border border-border rounded-2xl shadow-sm">

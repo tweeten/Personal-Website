@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 export const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0
+    x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0,
+    y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0
   });
   const [isHovering, setIsHovering] = useState(false);
   useEffect(() => {
+    // On mount, set cursor to center
+    setMousePosition({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2
+    });
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: e.clientX,

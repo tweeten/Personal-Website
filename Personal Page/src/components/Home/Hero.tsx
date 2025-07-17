@@ -24,7 +24,7 @@ export const Hero = () => {
             className="text-base xs:text-lg sm:text-xl md:text-2xl text-dark/80 max-w-xs xs:max-w-md sm:max-w-2xl font-serif mt-4 text-center"
             style={{ textShadow: '1px 1px 6px rgba(60, 58, 54, 0.18), 0 1px 0 #fff' }}
           >
-            Building digital experiences with the harmony of nature and the precision of architecture.
+            Building digital experiences with intention
           </p>
         </div>
       </div>
