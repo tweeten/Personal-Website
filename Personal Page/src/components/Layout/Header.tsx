@@ -63,7 +63,7 @@ export const Header = () => {
         {menuOpen && (
           <>
             {/* Fullscreen Opaque Menu Overlay */}
-            <div className="fixed inset-0 z-50 bg-[#f7f3eb] flex flex-col items-center justify-center">
+            <div className="fixed inset-0 z-[9999] bg-[#f7f3eb] flex flex-col items-center justify-center">
               <button
                 className="absolute top-6 right-6 text-3xl text-[#b75c3d]"
                 onClick={() => setMenuOpen(false)}

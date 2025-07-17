@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 export const Hero = () => {
   return <section
-    className="relative min-h-[70vh] sm:min-h-[90vh] flex items-center overflow-hidden bg-beige"
+    className="relative min-h-screen flex items-center overflow-hidden bg-beige"
     style={{
       backgroundImage: "url('/images/Stockman_cream.jpg')",
       backgroundSize: 'cover',
