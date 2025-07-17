@@ -48,7 +48,7 @@ export const Navigation = ({
     }
   };
   const gridLines = Array(10).fill(0);
-  return <motion.nav className="fixed inset-0 z-40 bg-[#f7f3eb] flex items-center justify-center overflow-hidden" initial={{
+  return <motion.nav className="fixed inset-0 z-40 bg-[#f7f3eb] flex items-center justify-center overflow-hidden px-2 sm:px-8" initial={{
     opacity: 0,
     y: -50
   }} animate={{
@@ -88,9 +88,9 @@ export const Navigation = ({
         ease: 'easeOut'
       }} />)}
       </div>
-      <motion.ul className="relative z-10 text-4xl md:text-6xl font-light space-y-4 md:space-y-8" variants={container} initial="hidden" animate="show">
+      <motion.ul className="relative z-10 text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-light space-y-4 sm:space-y-8" variants={container} initial="hidden" animate="show">
         {menuItems.map((menuItem, i) => <motion.li key={i} variants={item} className="relative overflow-hidden">
-            <button onClick={() => setMenuOpen(false)} className="relative block hover:text-[#b75c3d] transition-colors duration-300 group">
+            <button onClick={() => setMenuOpen(false)} className="relative block hover:text-[#b75c3d] transition-colors duration-300 group px-2 py-2 sm:px-4 sm:py-3 w-full text-left">
               {menuItem.title}
               <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#b75c3d]" initial={{
             width: '0%'
