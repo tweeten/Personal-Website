@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuItems = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '#hero' },
     { name: 'Works', href: '#works' },
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '#blog' },
+    { name: 'Resume', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
     { name: 'Contact', href: '#contact' },
   ];
   return (
@@ -35,6 +36,7 @@ export const Header = () => {
             <motion.a
               key={item.name}
               href={item.href}
+              target={item.target}
               className="relative text-sm lg:text-base text-[#3c3a36] hover:text-[#b75c3d] transition-colors duration-300 py-1"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -76,6 +78,7 @@ export const Header = () => {
                   <li key={item.name}>
                     <a
                       href={item.href}
+                      target={item.target}
                       className="block hover:text-[#b75c3d] transition-colors duration-300 px-2 py-2 rounded-lg text-center"
                       onClick={() => setMenuOpen(false)}
                     >
