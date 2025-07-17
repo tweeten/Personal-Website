@@ -62,20 +62,8 @@ export const Header = () => {
         {/* Mobile Navigation Drawer (Right Side) */}
         {menuOpen && (
           <>
-            {/* Overlay */}
-            <div
-              className="fixed inset-0 z-40 bg-black/30 md:hidden"
-              onClick={() => setMenuOpen(false)}
-              aria-label="Close menu overlay"
-            />
-            {/* Drawer */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-y-0 right-0 w-3/4 max-w-xs bg-[#f7f3eb] shadow-lg z-50 flex flex-col p-8 md:hidden"
-            >
+            {/* Fullscreen Opaque Menu Overlay */}
+            <div className="fixed inset-0 z-50 bg-[#f7f3eb] flex flex-col items-center justify-center">
               <button
                 className="absolute top-6 right-6 text-3xl text-[#b75c3d]"
                 onClick={() => setMenuOpen(false)}
@@ -83,12 +71,12 @@ export const Header = () => {
               >
                 ×
               </button>
-              <ul className="mt-12 space-y-8 text-2xl font-light">
+              <ul className="space-y-8 text-2xl font-light text-[#3c3a36]">
                 {menuItems.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
-                      className="block hover:text-[#b75c3d] transition-colors duration-300 px-2 py-2 rounded-lg"
+                      className="block hover:text-[#b75c3d] transition-colors duration-300 px-2 py-2 rounded-lg text-center"
                       onClick={() => setMenuOpen(false)}
                     >
                       {item.name}
@@ -96,7 +84,9 @@ export const Header = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
+            {/* Prevent background scroll when menu is open */}
+            <style>{`body { overflow: hidden !important; }`}</style>
           </>
         )}
       </div>
