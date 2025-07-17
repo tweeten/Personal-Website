@@ -6,7 +6,7 @@ import { BlogPreview } from '../components/Home/BlogPreview';
 import { ContactSection } from '../components/Home/ContactSection';
 export const Home = () => {
   return <>
-      <div id="home">
+      <div id="hero">
         <Hero />
       </div>
       <div id="about">

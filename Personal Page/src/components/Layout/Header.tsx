@@ -74,8 +74,7 @@ export const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-y-0 right-0 w-3/4 max-w-xs bg-[#f7f3eb] opacity-100 shadow-lg z-50 flex flex-col p-8 md:hidden"
-              style={{ boxShadow: 'rgba(60, 58, 54, 0.12) -4px 0px 24px 0px' }}
+              className="fixed inset-y-0 right-0 w-3/4 max-w-xs bg-[#f7f3eb] shadow-lg z-50 flex flex-col p-8 md:hidden"
             >
               <button
                 className="absolute top-6 right-6 text-3xl text-[#b75c3d]"

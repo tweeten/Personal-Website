@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 export function App() {
   useEffect(() => {
     if (window.location.pathname === '/' && !window.location.hash) {
-      const hero = document.getElementById('home');
+      const hero = document.getElementById('hero');
       if (hero) {
         hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
