@@ -102,11 +102,11 @@ export const ContactSection = () => {
         duration: 0.6
       }}>
           <h2 className="text-3xl md:text-4xl font-light leading-tight text-center">
-            Get in Touch (Coming Soon!)
+            Get in Touch
           </h2>
           <div className="mt-4 w-16 h-1 bg-[#b75c3d] mx-auto" />
           <p className="mt-6 text-center text-lg text-[#3c3a36]/80 max-w-xl mx-auto">
-            Interested in working together? I'll be wiring this form up to a database shortly. For now, please reach out to me at tweeten.tyler@gmail.com.
+            Interested in working together? Drop me a line here!
           </p>
           <div className="mt-12">
             <form onSubmit={handleSubmit} className="space-y-6">
