@@ -49,7 +49,7 @@ export const Footer = () => {
               { label: 'Home', href: '#home' },
               { label: 'Works', href: '#works' },
               { label: 'About', href: '#about' },
-              { label: 'Blog', href: '#blog' },
+              { label: 'Writings', href: '#writings' },
               { label: 'Contact', href: '#contact' }
             ].map(({ label, href }, i) => (
               <motion.div key={i} initial={{

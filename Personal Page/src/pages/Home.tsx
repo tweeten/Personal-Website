@@ -19,7 +19,7 @@ export const Home = () => {
       <div id="works">
         <WorksGallery />
       </div>
-      <div id="blog">
+      <div id="writings">
         <BlogPreview />
       </div>
       <ContactSection />
