@@ -8,8 +8,8 @@ export const Header = () => {
     { name: 'Works', href: '#works' },
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '#blog' },
-    { name: 'Resume', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
     { name: 'Contact', href: '#contact' },
+    { name: 'Resume', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
   ];
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-[#f7f3eb]/80 backdrop-blur-sm border-b border-[#b75c3d]/10">
