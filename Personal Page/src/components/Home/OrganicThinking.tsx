@@ -18,7 +18,7 @@ export const OrganicThinking = () => {
       </div>
       <h2 className="text-4xl md:text-5xl font-bold font-sans text-dark text-center mb-8">About Me</h2>
       <p className="text-lg text-dark/80 font-serif text-center max-w-2xl mx-auto mb-16">
-        I’m Tyler Tweeten, a Technical Product Manager passionate about building digital experiences to help humans solve real problems. My work is guided by the belief that design should be purposeful yet beautiful. My goal is to enhance the human experience by delivering thoughtful, intuitive solutions.
+        I’m Tyler Tweeten, a Technical Product Manager passionate about building digital experiences to help humans solve real problems. My work is guided by the belief that design should be purposeful yet beautiful. My mission is to deliver thoughtful, intuitive solutions to help users and customers accomplish their goals.
       </p>
       <h2 className="text-4xl md:text-5xl font-bold font-sans text-dark text-center mb-8 mt-[90px]">Design Values</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">

@@ -7,7 +7,7 @@ export const Header = () => {
     { name: 'Home', href: '#hero' },
     { name: 'Works', href: '#works' },
     { name: 'About', href: '#about' },
-    { name: 'Blog', href: '#blog' },
+    { name: 'Writings', href: '#writings' },
     { name: 'Contact', href: '#contact' },
     { name: 'Resume', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
   ];
@@ -23,7 +23,9 @@ export const Header = () => {
         }} transition={{
           duration: 0.5
         }}>
-          tylertweeten.com
+          <a href="/" className="hover:underline focus:underline">
+            tylertweeten.com
+          </a>
         </motion.div>
         {/* Desktop Navigation */}
         <motion.nav
