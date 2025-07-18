@@ -88,9 +88,9 @@ export const ContactSection = () => {
       }
     }
   };
-  return <section id="contact" className="py-20 md:py-32 bg-[#e6dfd0]/30">
+  return <section id="contact" className="py-10 md:py-16 bg-[#e6dfd0]/30">
       <div className="container mx-auto px-6">
-        <motion.div className="max-w-3xl mx-auto" initial={{
+        <motion.div className="max-w-3xl mx-auto mt-[44px]" initial={{
         opacity: 0,
         y: 30
       }} whileInView={{
@@ -101,15 +101,15 @@ export const ContactSection = () => {
       }} transition={{
         duration: 0.6
       }}>
-          <h2 className="text-3xl md:text-4xl font-light leading-tight text-center">
+          <h2 className="text-3xl md:text-4xl font-light leading-tight text-center mb-5">
             Get in Touch
           </h2>
-          <div className="mt-4 w-16 h-1 bg-[#b75c3d] mx-auto" />
-          <p className="mt-6 text-center text-lg text-[#3c3a36]/80 max-w-xl mx-auto">
+          <div className="mt-5 w-16 h-1 bg-[#b75c3d] mx-auto" />
+          <p className="mt-5 text-center text-lg text-[#3c3a36]/80 max-w-xl mx-auto">
             Interested in working together? Drop me a line here!
           </p>
-          <div className="mt-12">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="mt-21">
+            <form onSubmit={handleSubmit} className="space-y-13">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[#3c3a36]">
                   Name

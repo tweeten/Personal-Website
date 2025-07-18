@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLinkIcon } from 'lucide-react';
-import peersignalimg from "../../assets/images/peersignal.png"
+import peersignalimg from "../../assets/images/peersignal.png";
+import favicoimg from "../../assets/images/favico.png";
+
 export const WorksGallery = () => {
   const projects = [{
     title: 'CaptuRE Recycling',
     category: 'Web Design',
-    image: 'https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: favicoimg,
     color: '#6b8e56',
     url: 'https://capturerecycling.com',
     description: 'Under construction as of 7/2025. A website for a recycling company that allows users to learn about the company, view their products, and contact them.'
@@ -18,9 +20,9 @@ export const WorksGallery = () => {
     url: 'https://peersignal-io.lovable.app/',
     description: 'Under construction as of 7/2025. My personal project to build a financial intelligence platform using publicly available data to help investors make better decisions.'
   }];
-  return <section className="py-20 md:py-32">
+  return <section className="py-10 md:py-16">
       <div className="container mx-auto px-6">
-        <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20" initial={{
+        <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-13 md:mb-21" initial={{
         opacity: 0,
         y: 30
       }} whileInView={{
@@ -42,19 +44,20 @@ export const WorksGallery = () => {
             <span className="ml-2 relative block w-6 h-[1px] bg-current transform transition-transform group-hover:scale-x-150 origin-left"></span>
           </button>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {projects.map((project, i) => <motion.div key={i} className="group" initial={{
-          opacity: 0,
-          y: 30
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true
-        }} transition={{
-          duration: 0.6,
-          delay: 0.1 * i
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+          {projects.map((project, i) => (
+            <motion.div key={i} className="group" initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.6,
+              delay: 0.1 * i
+            }}>
               <a href={project.url} target="_blank" rel="noopener noreferrer" className="block" aria-label={`View ${project.title} project`}>
                 <div className="relative overflow-hidden">
                   <div className="aspect-[4/3] overflow-hidden">
@@ -77,21 +80,20 @@ export const WorksGallery = () => {
                 </div>
               </a>
               {/* Project Preview Info */}
-              <div className="mt-4 p-5 bg-[#f7f3eb] border border-[#b75c3d]/10">
+              <div className="mt-7 p-5 bg-[#f7f3eb] border border-[#b75c3d]/10">
                 <p className="text-sm text-[#3c3a36]/80">
                   {project.description}
                 </p>
-                <div className="mt-4 flex justify-between items-center">
+                <div className="mt-13 flex justify-between items-center">
                   <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm text-[#b75c3d] hover:text-[#a24e33] transition-colors">
                     <span>Visit Project</span>
                     <ExternalLinkIcon className="ml-2" size={14} />
                   </a>
-                  <span className="inline-block w-3 h-3" style={{
-                backgroundColor: project.color
-              }}></span>
+                  <span className="inline-block w-3 h-3" style={{ backgroundColor: project.color }}></span>
                 </div>
               </div>
-            </motion.div>)}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>;

@@ -4,7 +4,7 @@ import { FileTextIcon, DownloadIcon } from 'lucide-react';
 export const OrganicThinking = () => {
   const resumeUrl = '/Tyler%20Tweeten%20Resume.pdf';
   const [pdfLoaded, setPdfLoaded] = useState(false);
-  return <section className="py-24 bg-beige border-t border-border">
+  return <section className="py-10 md:py-16 bg-beige border-t border-border">
     <div className="container mx-auto px-6 mt-0 pt-0">
       <div className="flex justify-center mb-6 mt-4">
         <img
@@ -18,8 +18,9 @@ export const OrganicThinking = () => {
       </div>
       <h2 className="text-4xl md:text-5xl font-bold font-sans text-dark text-center mb-8">About Me</h2>
       <p className="text-lg text-dark/80 font-serif text-center max-w-2xl mx-auto mb-16">
-        I’m Tyler Tweeten, an AI powered Technical Product Manager passionate about building digital experiences to help users solve real problems.  My work is guided by the belief that design should be both beautiful and purposeful, enhancing the human experience through thoughtful, intuitive solutions.
+        I’m Tyler Tweeten, a Technical Product Manager passionate about building digital experiences to help humans solve real problems. My work is guided by the belief that design should be purposeful yet beautiful. My goal is to enhance the human experience by delivering thoughtful, intuitive solutions.
       </p>
+      <h2 className="text-4xl md:text-5xl font-bold font-sans text-dark text-center mb-8 mt-[90px]">Design Values</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
         {/* Value 1 */}
         <div className="flex flex-col items-center text-center p-8 bg-white border border-border rounded-2xl shadow-sm">
