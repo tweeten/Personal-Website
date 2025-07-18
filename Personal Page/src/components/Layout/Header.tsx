@@ -9,7 +9,7 @@ export const Header = () => {
     { name: 'About', href: '#about' },
     { name: 'Writings', href: '#writings' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Resume', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
+    { name: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
   ];
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-[#f7f3eb]/80 backdrop-blur-sm border-b border-[#b75c3d]/10">
