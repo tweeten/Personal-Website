@@ -106,7 +106,7 @@ export const ContactSection = () => {
           </h2>
           <div className="mt-5 w-16 h-1 bg-[#b75c3d] mx-auto" />
           <p className="mt-5 text-center text-lg text-[#3c3a36]/80 max-w-xl mx-auto">
-            Interested in working together? Drop me a line here!
+            Interested in working on a project together? Drop me a line here!
           </p>
           <div className="mt-21">
             <form onSubmit={handleSubmit} className="space-y-13">
