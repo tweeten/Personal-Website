@@ -7,7 +7,8 @@ const port = process.env.PORT || 5000;
 
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_q9bCXRVGLD1r@ep-falling-recipe-afn2vfbg-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
+  connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_q9bCXRVGLD1r@ep-falling-recipe-afn2vfbg-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
+  idleTimeoutMillis: 300000
 });
 
 app.use(cors());
@@ -43,3 +44,12 @@ app.post('/api/contact', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+setInterval(async () => {
+  try {
+    // This simple query is enough to keep the connection alive
+    await pool.query('SELECT 1');
+  } catch (err) {
+    console.error('Keep-alive query failed:', err);
+  }
+}, 240000); // 4 minutes
