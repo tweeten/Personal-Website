@@ -169,11 +169,6 @@ export const ContactSection = () => {
                 </motion.button>
               </div>
             </form>
-            {isSubmitted && (
-              <div className="mt-4 p-4 bg-green-100 text-green-800 rounded text-center">
-                <strong>Message sent!</strong>
-              </div>
-            )}
             {errors.message && (
               <div className="mt-4 p-4 bg-red-100 text-red-800 rounded text-center">
                 {errors.message}
