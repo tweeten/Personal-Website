@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -14,36 +16,66 @@ const pool = new Pool({
 app.use(cors());
 app.use(express.json());
 
+const QUEUE_FILE = path.join(__dirname, 'queue.json');
+
+// Ensure queue.json exists
+if (!fs.existsSync(QUEUE_FILE)) {
+  fs.writeFileSync(QUEUE_FILE, '[]', 'utf8');
+}
+
+// Helper to read queue
+function readQueue() {
+  try {
+    const data = fs.readFileSync(QUEUE_FILE, 'utf8');
+    return JSON.parse(data);
+  } catch (err) {
+    console.error('Error reading queue:', err);
+    return [];
+  }
+}
+
+// Helper to write queue
+function writeQueue(queue) {
+  try {
+    fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2), 'utf8');
+  } catch (err) {
+    console.error('Error writing queue:', err);
+  }
+}
+
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
-  try {
-    // Create table if it doesn't exist
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS contact_messages (
-        id SERIAL PRIMARY KEY,
-        name TEXT NOT NULL,
-        email TEXT NOT NULL,
-        message TEXT NOT NULL,
-        created_at TIMESTAMPTZ DEFAULT NOW()
-      )
-    `);
-
-    // Insert the form data
-    await pool.query(
-      'INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3)',
-      [name, email, message]
-    );
-
-    res.status(200).json({ success: true });
-  } catch (err) {
-    console.error('Error saving contact message:', err);
-    res.status(500).json({ success: false, error: 'Server error' });
-  }
+  // Add to queue
+  const queue = readQueue();
+  queue.push({ name, email, message, created_at: new Date().toISOString() });
+  writeQueue(queue);
+  // Respond immediately
+  res.status(200).json({ success: true });
 });
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+// Background job: every 15 minutes
+setInterval(async () => {
+  let queue = readQueue();
+  if (queue.length === 0) return;
+  const newQueue = [];
+  for (const item of queue) {
+    try {
+      await pool.query(
+        'INSERT INTO contact_messages (name, email, message, created_at) VALUES ($1, $2, $3, $4)',
+        [item.name, item.email, item.message, item.created_at]
+      );
+      // Success: do not re-add to newQueue
+    } catch (err) {
+      console.error('Failed to sync queued message:', err);
+      newQueue.push(item); // Keep in queue for next attempt
+    }
+  }
+  writeQueue(newQueue);
+}, 15 * 60 * 1000); // 15 minutes
 
 setInterval(async () => {
   try {
