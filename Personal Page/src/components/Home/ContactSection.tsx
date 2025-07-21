@@ -68,7 +68,8 @@ export const ContactSection = () => {
           },
           body: JSON.stringify(formData),
         });
-        if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
           setIsSubmitted(true);
           setFormData({
             name: '',
@@ -79,10 +80,10 @@ export const ContactSection = () => {
             setIsSubmitted(false);
           }, 5000);
         } else {
-          // handle error
+          setErrors(prev => ({ ...prev, message: 'Failed to queue message. Please try again.' }));
         }
       } catch (error) {
-        // handle error
+        setErrors(prev => ({ ...prev, message: 'Failed to queue message. Please try again.' }));
       } finally {
         setIsSubmitting(false);
       }

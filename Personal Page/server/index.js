@@ -23,6 +23,8 @@ if (!fs.existsSync(QUEUE_FILE)) {
   fs.writeFileSync(QUEUE_FILE, '[]', 'utf8');
 }
 
+console.log('QUEUE_FILE path:', QUEUE_FILE);
+
 // Helper to read queue
 function readQueue() {
   try {
@@ -37,7 +39,9 @@ function readQueue() {
 // Helper to write queue
 function writeQueue(queue) {
   try {
+    console.log('Attempting to write to queue.json at:', QUEUE_FILE);
     fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2), 'utf8');
+    console.log('Successfully wrote to queue.json');
   } catch (err) {
     console.error('Error writing queue:', err);
   }
@@ -45,10 +49,13 @@ function writeQueue(queue) {
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
+  console.log('Received form submission:', req.body);
   // Add to queue
   const queue = readQueue();
+  console.log('Queue before append:', queue);
   queue.push({ name, email, message, created_at: new Date().toISOString() });
   writeQueue(queue);
+  console.log('Queue after append:', queue);
   // Respond immediately
   res.status(200).json({ success: true });
 });
