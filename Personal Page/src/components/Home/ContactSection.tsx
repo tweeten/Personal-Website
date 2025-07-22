@@ -12,7 +12,6 @@ export const ContactSection = () => {
     email: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
@@ -59,34 +58,43 @@ export const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      setIsSubmitting(true);
-      try {
-        const response = await fetch('https://personal-website-wwin.onrender.com/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-        const data = await response.json();
-        if (data.success) {
-          setIsSubmitted(true);
-          setFormData({
-            name: '',
-            email: '',
-            message: ''
+      // Optimistic UI: Show success immediately
+      setIsSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+      
+      // Start the network request in the background
+      const sendMessage = async () => {
+        try {
+          const response = await fetch('https://personal-website-wwin.onrender.com/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
           });
-          setTimeout(() => {
-            setIsSubmitted(false);
-          }, 5000);
-        } else {
-          setErrors(prev => ({ ...prev, message: 'Failed to queue message. Please try again.' }));
+          const data = await response.json();
+          if (!data.success) {
+            // If the request fails, we could show a subtle notification
+            // but we won't revert the optimistic UI since the user already saw success
+            console.warn('Message queuing failed, but user already saw success');
+          }
+        } catch (error) {
+          // Silent fail - don't disrupt the user experience
+          console.error('Background message send failed:', error);
         }
-      } catch (error) {
-        setErrors(prev => ({ ...prev, message: 'Failed to queue message. Please try again.' }));
-      } finally {
-        setIsSubmitting(false);
-      }
+      };
+      
+      // Fire off the request without waiting
+      sendMessage();
+      
+      // Reset the success state after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
     }
   };
   return <section id="contact" className="py-10 md:py-16 bg-[#e6dfd0]/30">
@@ -141,18 +149,12 @@ export const ContactSection = () => {
                 </div>
               </div>
               <div className="flex justify-end">
-                <motion.button type="submit" disabled={isSubmitting || isSubmitted} className={`group relative inline-flex items-center px-6 py-3 overflow-hidden ${isSubmitted ? 'bg-green-600 text-white' : 'border border-[#b75c3d] text-[#b75c3d]'}`} whileHover={!isSubmitted ? {
+                <motion.button type="submit" disabled={isSubmitted} className={`group relative inline-flex items-center px-6 py-3 overflow-hidden ${isSubmitted ? 'bg-green-600 text-black' : 'border border-[#b75c3d] text-[#b75c3d]'}`} whileHover={!isSubmitted ? {
                 scale: 1.02
               } : {}} whileTap={!isSubmitted ? {
                 scale: 0.98
               } : {}}>
-                  {isSubmitting ? <span className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Sending...
-                    </span> : isSubmitted ? <span className="flex items-center">
+                  {isSubmitted ? <span className="flex items-center">
                       <CheckIcon className="mr-2" size={16} />
                       Message Sent!
                     </span> : <>
