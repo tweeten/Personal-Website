@@ -5,8 +5,8 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuItems = [
     { name: 'Home', href: '#hero' },
-    { name: 'Works', href: '#works' },
     { name: 'About', href: '#about' },
+    { name: 'Works', href: '#works' },
     { name: 'Writings', href: '#writings' },
     { name: 'Contact', href: '#contact' },
     { name: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
