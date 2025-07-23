@@ -47,8 +47,8 @@ export const Footer = () => {
           <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
             {[
               { label: 'Home', href: '#hero' },
-              { label: 'Works', href: '#works' },
               { label: 'About', href: '#about' },
+              { label: 'Works', href: '#works' },
               { label: 'Writings', href: '#writings' },
               { label: 'Contact', href: '#contact' }
             ].map(({ label, href }, i) => (
