@@ -50,7 +50,8 @@ export const Footer = () => {
               { label: 'About', href: '#about' },
               { label: 'Works', href: '#works' },
               { label: 'Writings', href: '#writings' },
-              { label: 'Contact', href: '#contact' }
+              { label: 'Contact', href: '#contact' },
+              { label: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf' }
             ].map(({ label, href }, i) => (
               <motion.div key={i} initial={{
                 opacity: 0,
