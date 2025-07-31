@@ -9,14 +9,14 @@ export const WorksGallery = () => {
     title: 'CaptuRE Recycling',
     category: 'Web Design',
     image: favicoimg,
-    color: '#6b8e56',
+    color: '#D3A95C',
     url: 'https://capturerecycling.com',
     description: 'Under construction as of 7/2025. A website for a recycling company that allows users to learn about the company, view their products, and contact them.'
   }, {
     title: 'peersignal.io',
     category: 'Product Development',
     image: peersignalimg,
-    color: '#2F2F2F',
+    color: '#D3A95C',
     url: 'https://peersignal-io.lovable.app/',
     description: 'Under construction as of 7/2025. My personal project to build a financial intelligence platform using publicly available data to help investors make better decisions.'
   }];
