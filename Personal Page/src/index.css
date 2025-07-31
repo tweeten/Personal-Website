@@ -10,7 +10,4 @@ html {
 h1, h2, h3, h4, h5, h6, .font-sans {
   font-family: 'Josefin Sans', 'Inter', system-ui, sans-serif;
 }
-body {
-  background-color: #F7F3EB;
-  color: #3C3A36;
-}
+/* Removed hardcoded body background and color since we're using Tailwind dark mode classes */

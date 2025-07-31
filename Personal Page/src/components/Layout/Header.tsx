@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ThemeToggle } from './ThemeToggle';
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,9 +13,9 @@ export const Header = () => {
     { name: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
   ];
   return (
-    <header className="fixed top-0 left-0 w-full z-40 bg-[#f7f3eb]/80 backdrop-blur-sm border-b border-[#b75c3d]/10">
+    <header className="fixed top-0 left-0 w-full z-40 bg-beige/80 dark:bg-dark-bg/80 backdrop-blur-sm border-b border-accent/10 dark:border-dark-border/20 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <motion.div className="font-bold text-lg sm:text-xl text-[#b75c3d]" initial={{
+        <motion.div className="font-bold text-lg sm:text-xl text-accent" initial={{
           opacity: 0,
           y: -10
         }} animate={{
@@ -27,6 +28,7 @@ export const Header = () => {
             tylertweeten.com
           </a>
         </motion.div>
+        
         {/* Desktop Navigation */}
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
@@ -39,16 +41,26 @@ export const Header = () => {
               key={item.name}
               href={item.href}
               target={item.target}
-              className="relative text-sm lg:text-base text-[#3c3a36] hover:text-[#b75c3d] transition-colors duration-300 py-1"
+              className="relative text-sm lg:text-base text-dark dark:text-dark-text hover:text-accent transition-colors duration-300 py-1"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
             >
               {item.name}
-              <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#b75c3d]" initial={{ width: '0%' }} whileHover={{ width: '100%' }} transition={{ duration: 0.3 }} />
+              <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent" initial={{ width: '0%' }} whileHover={{ width: '100%' }} transition={{ duration: 0.3 }} />
             </motion.a>
           ))}
+          
+          {/* Theme Toggle */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.6 }}
+          >
+            <ThemeToggle />
+          </motion.div>
         </motion.nav>
+        
         {/* Mobile menu button */}
         <motion.button
           className="md:hidden relative z-50 w-10 h-10 flex flex-col justify-center items-center"
@@ -59,10 +71,11 @@ export const Header = () => {
           aria-label="Open menu"
         >
           <span className="sr-only">Menu</span>
-          <span className="w-6 h-[2px] bg-[#3c3a36] block mb-1.5" />
-          <span className="w-6 h-[2px] bg-[#3c3a36] block mb-1.5" />
-          <span className="w-6 h-[2px] bg-[#3c3a36] block" />
+          <span className="w-6 h-[2px] bg-dark dark:bg-dark-text block mb-1.5 transition-colors duration-300" />
+          <span className="w-6 h-[2px] bg-dark dark:bg-dark-text block mb-1.5 transition-colors duration-300" />
+          <span className="w-6 h-[2px] bg-dark dark:bg-dark-text block transition-colors duration-300" />
         </motion.button>
+        
         {/* Mobile Navigation Drawer (Right Side) */}
         {menuOpen && (
           <motion.div
@@ -70,23 +83,29 @@ export const Header = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-[9999] bg-[#f7f3eb] flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[9999] bg-beige dark:bg-dark-bg flex flex-col items-center justify-center transition-colors duration-300"
             style={{ right: 0, top: 0, width: '100vw', height: '100vh' }}
           >
             <button
-              className="absolute top-6 right-6 text-3xl text-[#b75c3d]"
+              className="absolute top-6 right-6 text-3xl text-accent"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
             >
               ×
             </button>
-            <ul className="space-y-8 text-2xl font-light text-[#3c3a36]">
+            
+            {/* Theme Toggle for Mobile */}
+            <div className="absolute top-6 left-6">
+              <ThemeToggle />
+            </div>
+            
+            <ul className="space-y-8 text-2xl font-light text-dark dark:text-dark-text">
               {menuItems.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.href}
                     target={item.target}
-                    className="block hover:text-[#b75c3d] transition-colors duration-300 px-2 py-2 rounded-lg text-center"
+                    className="block hover:text-accent transition-colors duration-300 px-2 py-2 rounded-lg text-center"
                     onClick={() => setMenuOpen(false)}
                   >
                     {item.name}

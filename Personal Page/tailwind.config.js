@@ -3,6 +3,7 @@ export default {
   './index.html',
   './src/**/*.{js,ts,jsx,tsx}'
 ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -16,6 +17,12 @@ export default {
         gold: '#D3A95C',
         green: '#6B8E56',
         border: '#E6DFD0',
+        // Dark mode colors
+        'dark-bg': '#1a1a1a',
+        'dark-surface': '#2d2d2d',
+        'dark-text': '#e5e5e5',
+        'dark-text-secondary': '#a0a0a0',
+        'dark-border': '#404040',
       },
     },
   },
