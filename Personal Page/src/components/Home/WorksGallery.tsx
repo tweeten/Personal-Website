@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLinkIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import peersignalimg from "../../assets/images/peersignal.png";
 import favicoimg from "../../assets/images/favico.png";
 
 export const WorksGallery = () => {
+  const navigate = useNavigate();
   const projects = [{
     title: 'CaptuRE Recycling',
     category: 'Web Design',
@@ -47,7 +49,10 @@ export const WorksGallery = () => {
             </h2>
             <div className="mt-4 w-16 h-1 bg-accent" />
           </div>
-          <button className="mt-6 md:mt-0 group relative inline-flex items-center text-dark dark:text-dark-text hover:text-accent transition-colors duration-300">
+          <button 
+            onClick={() => navigate('/projects')}
+            className="mt-6 mb-6 md:mt-0 group relative inline-flex items-center text-dark dark:text-dark-text hover:text-accent transition-colors duration-300"
+          >
             <span>View All Projects</span>
             <span className="ml-2 relative block w-6 h-[1px] bg-current transform transition-transform group-hover:scale-x-150 origin-left"></span>
           </button>
@@ -85,19 +90,18 @@ export const WorksGallery = () => {
                       <ExternalLinkIcon className="text-dark dark:text-dark-text" size={20} />
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <span className="inline-block text-sm text-dark/70 dark:text-dark-text-secondary mb-2 transition-colors duration-300">
-                      {project.category}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-medium text-dark dark:text-dark-text transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                  </div>
+
                 </div>
               </a>
               
               {/* Project Preview Info */}
               <div className="mt-7 p-5 bg-beige dark:bg-dark-surface border border-accent/10 dark:border-dark-border transition-colors duration-300">
+                <span className="inline-block text-sm text-accent mb-2 transition-colors duration-300">
+                  {project.category}
+                </span>
+                <h3 className="text-xl md:text-2xl font-medium text-dark dark:text-dark-text mb-3 transition-colors duration-300">
+                  {project.title}
+                </h3>
                 <p className="text-sm text-dark/80 dark:text-dark-text-secondary transition-colors duration-300">
                   {project.description}
                 </p>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export const BlogPreview = () => {
+  const navigate = useNavigate();
   const posts = [{
     title: 'Placeholder for writings',
     date: 'July 15, 2025',
@@ -35,9 +37,12 @@ export const BlogPreview = () => {
             </h2>
             <div className="mt-4 w-16 h-1 bg-accent" />
           </div>
-          <button className="mt-6 md:mt-0 group relative inline-flex items-center text-dark dark:text-dark-text hover:text-accent transition-colors duration-300">
+          <button 
+            onClick={() => navigate('/blog')}
+            className="mt-6 md:mt-0 group relative inline-flex items-center text-dark dark:text-dark-text hover:text-accent transition-colors duration-300"
+          >
             <span>View All Posts</span>
-            <span className="ml-2 relative block w-6 h-[1px] bg-current transform transition-transform group-hover:scale-x-150 origin-left"></span>
+            <span className="mt-6 ml-2 mb-6 relative block w-6 h-[1px] bg-current transform transition-transform group-hover:scale-x-150 origin-left"></span>
           </button>
         </motion.div>
         

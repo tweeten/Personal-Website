@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
 
 export const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  
   const menuItems = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Works', href: '#works' },
-    { name: 'Writings', href: '#writings' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank' },
+    { name: 'Home', href: '/', isInternal: true },
+    { name: 'About', href: '/about', isInternal: true },
+    { name: 'Works', href: '/projects', isInternal: true },
+    { name: 'Writings', href: '/blog', isInternal: true },
+    { name: 'Contact', href: '/contact', isInternal: true },
+    { name: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank', isInternal: false },
   ];
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-beige/80 dark:bg-dark-bg/80 backdrop-blur-sm border-b border-accent/10 dark:border-dark-border/20 transition-colors duration-300">
@@ -24,9 +28,12 @@ export const Header = () => {
         }} transition={{
           duration: 0.5
         }}>
-          <a href="/" className="hover:underline focus:underline">
+          <button 
+            onClick={() => navigate('/')}
+            className="hover:underline focus:underline cursor-pointer"
+          >
             tylertweeten.com
-          </a>
+          </button>
         </motion.div>
         
         {/* Desktop Navigation */}
@@ -37,18 +44,31 @@ export const Header = () => {
           className="hidden md:flex items-center space-x-4 lg:space-x-8"
         >
           {menuItems.map((item, index) => (
-            <motion.a
+            <motion.div
               key={item.name}
-              href={item.href}
-              target={item.target}
-              className="relative text-sm lg:text-base text-dark dark:text-dark-text hover:text-accent transition-colors duration-300 py-1"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
             >
-              {item.name}
-              <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent" initial={{ width: '0%' }} whileHover={{ width: '100%' }} transition={{ duration: 0.3 }} />
-            </motion.a>
+                                {item.isInternal ? (
+                    <button
+                      onClick={() => navigate(item.href)}
+                      className="relative text-sm lg:text-base text-dark dark:text-dark-text hover:text-accent transition-colors duration-300 py-1 cursor-pointer"
+                    >
+                      {item.name}
+                      <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent" initial={{ width: '0%' }} whileHover={{ width: '100%' }} transition={{ duration: 0.3 }} />
+                    </button>
+                  ) : (
+                <a
+                  href={item.href}
+                  target={item.target}
+                  className="relative text-sm lg:text-base text-dark dark:text-dark-text hover:text-accent transition-colors duration-300 py-1"
+                >
+                  {item.name}
+                  <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent" initial={{ width: '0%' }} whileHover={{ width: '100%' }} transition={{ duration: 0.3 }} />
+                </a>
+              )}
+            </motion.div>
           ))}
           
           {/* Theme Toggle */}
@@ -102,14 +122,26 @@ export const Header = () => {
             <ul className="space-y-8 text-2xl font-light text-dark dark:text-dark-text">
               {menuItems.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
-                    target={item.target}
-                    className="block hover:text-accent transition-colors duration-300 px-2 py-2 rounded-lg text-center"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
+                  {item.isInternal ? (
+                    <button
+                      onClick={() => {
+                        setMenuOpen(false);
+                        navigate(item.href);
+                      }}
+                      className="block hover:text-accent transition-colors duration-300 px-2 py-2 rounded-lg text-center cursor-pointer w-full"
+                    >
+                      {item.name}
+                    </button>
+                  ) : (
+                    <a
+                      href={item.href}
+                      target={item.target}
+                      className="block hover:text-accent transition-colors duration-300 px-2 py-2 rounded-lg text-center"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

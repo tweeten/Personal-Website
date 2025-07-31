@@ -1,15 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const footerLinks = [
+    { label: 'Home', href: '/', isInternal: true },
+    { label: 'About', href: '/about', isInternal: true },
+    { label: 'Works', href: '/projects', isInternal: true },
+    { label: 'Writings', href: '/blog', isInternal: true },
+    { label: 'Contact', href: '/contact', isInternal: true },
+    { label: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', isInternal: false }
+  ];
+
   return (
     <footer className="border-t border-accent/10 dark:border-dark-border/20 py-8 sm:py-12 mt-20 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <motion.div 
-              className="text-2xl sm:text-3xl font-bold text-accent" 
+              className="text-2xl sm:text-3xl font-bold text-accent cursor-pointer" 
               initial={{
                 opacity: 0,
                 y: 20
@@ -24,6 +37,7 @@ export const Footer = () => {
               transition={{
                 duration: 0.5
               }}
+              onClick={() => navigate('/')}
             >
               tylertweeten.com
             </motion.div>
@@ -59,14 +73,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
-            {[
-              { label: 'Home', href: '#hero' },
-              { label: 'About', href: '#about' },
-              { label: 'Works', href: '#works' },
-              { label: 'Writings', href: '#writings' },
-              { label: 'Contact', href: '#contact' },
-              { label: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf' }
-            ].map(({ label, href }, i) => (
+            {footerLinks.map(({ label, href, isInternal }, i) => (
               <motion.div 
                 key={i} 
                 initial={{
@@ -85,12 +92,21 @@ export const Footer = () => {
                   delay: 0.1 + i * 0.1
                 }}
               >
-                <a 
-                  href={href} 
-                  className="font-medium mb-2 text-base sm:text-lg text-dark dark:text-dark-text hover:text-accent transition-colors block text-center md:text-left"
-                >
-                  {label}
-                </a>
+                {isInternal ? (
+                  <button
+                    onClick={() => navigate(href)}
+                    className="font-medium mb-2 text-base sm:text-lg text-dark dark:text-dark-text hover:text-accent transition-colors block text-center md:text-left cursor-pointer"
+                  >
+                    {label}
+                  </button>
+                ) : (
+                  <a 
+                    href={href} 
+                    className="font-medium mb-2 text-base sm:text-lg text-dark dark:text-dark-text hover:text-accent transition-colors block text-center md:text-left"
+                  >
+                    {label}
+                  </a>
+                )}
                 <div className="h-px w-8 bg-accent mb-4 mx-auto md:mx-0"></div>
               </motion.div>
             ))}
