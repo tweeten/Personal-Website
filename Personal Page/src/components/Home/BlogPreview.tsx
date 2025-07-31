@@ -66,6 +66,7 @@ export const BlogPreview = () => {
                 duration: 0.6,
                 delay: 0.1 * i
               }}
+              onClick={() => window.open('https://tylertweeten.com/blog/placeholder', '_blank')}
             >
               <div className="h-1 bg-accent/20 group-hover:bg-accent transition-colors duration-300"></div>
               <div className="p-6 bg-beige dark:bg-dark-surface border border-t-0 border-accent/20 dark:border-dark-border h-full transition-colors duration-300">
