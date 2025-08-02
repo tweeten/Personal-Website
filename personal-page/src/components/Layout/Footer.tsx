@@ -95,19 +95,20 @@ export const Footer = () => {
                 {isInternal ? (
                   <button
                     onClick={() => navigate(href)}
-                    className="font-medium mb-2 text-base sm:text-lg text-dark dark:text-dark-text hover:text-accent transition-colors block text-center md:text-left cursor-pointer"
+                    className="font-medium mb-2 text-base sm:text-lg text-dark dark:text-dark-text hover:text-accent transition-colors block text-left cursor-pointer relative"
                   >
                     {label}
+                    <div className="h-px w-8 bg-accent absolute -bottom-1 md:-bottom-2 left-0 md:left-0"></div>
                   </button>
                 ) : (
                   <a 
                     href={href} 
-                    className="font-medium mb-2 text-base sm:text-lg text-dark dark:text-dark-text hover:text-accent transition-colors block text-center md:text-left"
+                    className="font-medium mb-2 text-base sm:text-lg text-dark dark:text-dark-text hover:text-accent transition-colors block text-left relative"
                   >
                     {label}
+                    <div className="h-px w-8 bg-accent absolute -bottom-1 md:-bottom-2 left-0 md:left-0"></div>
                   </a>
                 )}
-                <div className="h-px w-8 bg-accent mb-4 mx-auto md:mx-0"></div>
               </motion.div>
             ))}
           </div>

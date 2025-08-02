@@ -29,7 +29,10 @@ export const Header = () => {
           duration: 0.5
         }}>
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => {
+              navigate('/');
+              window.scrollTo(0, 0);
+            }}
             className="hover:underline focus:underline cursor-pointer"
           >
             tylertweeten.com
@@ -52,7 +55,12 @@ export const Header = () => {
             >
                                 {item.isInternal ? (
                     <button
-                      onClick={() => navigate(item.href)}
+                      onClick={() => {
+                        navigate(item.href);
+                        if (item.href === '/') {
+                          window.scrollTo(0, 0);
+                        }
+                      }}
                       className="relative text-sm lg:text-base text-dark dark:text-dark-text hover:text-accent transition-colors duration-300 py-1 cursor-pointer"
                     >
                       {item.name}
@@ -127,6 +135,9 @@ export const Header = () => {
                       onClick={() => {
                         setMenuOpen(false);
                         navigate(item.href);
+                        if (item.href === '/') {
+                          window.scrollTo(0, 0);
+                        }
                       }}
                       className="block hover:text-accent transition-colors duration-300 px-2 py-2 rounded-lg text-center cursor-pointer w-full"
                     >

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Layout/Header';
 import { Footer } from './components/Layout/Footer';
 import { CustomCursor } from './components/Layout/CustomCursor';
+import { ScrollToTop } from './components/Layout/ScrollToTop';
 import { Home } from './pages/Home';
 import { Projects } from './pages/Projects';
 import { Blog } from './pages/Blog';
@@ -15,6 +16,7 @@ export function App() {
     <ThemeProvider>
       <Router>
         <div className="relative bg-beige dark:bg-dark-bg text-dark dark:text-dark-text min-h-screen overflow-x-hidden transition-colors duration-300">
+          <ScrollToTop />
           <CustomCursor />
           <Header />
           <main className="pt-16">
