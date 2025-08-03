@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Home } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 export const Header = () => {
@@ -9,7 +10,7 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   
   const menuItems = [
-    { name: 'Home', href: '/', isInternal: true },
+    
     { name: 'About', href: '/about', isInternal: true },
     { name: 'Works', href: '/projects', isInternal: true },
     { name: 'Writings', href: '/blog', isInternal: true },
@@ -19,7 +20,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-beige/80 dark:bg-dark-bg/80 backdrop-blur-sm border-b border-accent/10 dark:border-dark-border/20 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <motion.div className="font-bold text-lg sm:text-xl text-accent" initial={{
+        <motion.div className="text-dark dark:text-white" initial={{
           opacity: 0,
           y: -10
         }} animate={{
@@ -33,7 +34,7 @@ export const Header = () => {
               navigate('/');
               window.scrollTo(0, 0);
             }}
-            className="hover:underline focus:underline cursor-pointer"
+            className="text-sm lg:text-base hover:text-accent transition-colors duration-300 cursor-pointer"
           >
             tylertweeten.com
           </button>
