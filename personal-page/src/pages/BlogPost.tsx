@@ -42,9 +42,6 @@ const blogPosts: Record<string, BlogPostData> = {
           <p>
             Coming soon! It's about to get crafty yo! Get excited!
           </p>
-          <p>
-             
-          </p>
         </motion.article>
       </div>
     ),
