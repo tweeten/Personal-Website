@@ -40,10 +40,7 @@ const blogPosts: Record<string, BlogPostData> = {
       <div className="prose prose-lg dark:prose-invert max-w-none">
         <motion.article className="max-w-3xl space-y-6">
         <p>
-          Coming soon! It's about to get crafty yo! Get excited!
-        </p>
-        <p>
-          
+          Coming soon! It's about to get crafty yo!
         </p>
         </motion.article>
       </div>
