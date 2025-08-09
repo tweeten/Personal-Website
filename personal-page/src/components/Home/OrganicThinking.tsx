@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FileTextIcon, DownloadIcon } from 'lucide-react';
 
 export const OrganicThinking = () => {
-  const resumeUrl = '/Tyler%20Tweeten%20Resume.pdf';
+  const resumeUrl = '/Tyler%20Tweeten%20Resume.pdf?v=b2227150';
   const [pdfLoaded, setPdfLoaded] = useState(false);
   
   return (

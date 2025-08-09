@@ -13,7 +13,7 @@ export const Footer = () => {
     { label: 'Works', href: '/projects', isInternal: true },
     { label: 'Writings', href: '/blog', isInternal: true },
     { label: 'Contact', href: '/contact', isInternal: true },
-    { label: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', isInternal: false }
+    { label: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf?v=b2227150', isInternal: false }
   ];
 
   return (
