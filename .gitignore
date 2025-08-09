@@ -1,4 +1,5 @@
 /capture-reimagine-homepage/
 /clearhaus-breathe-easy-home/
 /peersignal-webpage/
-/product-status-rss-feed/ 
+/product-status-rss-feed/ .DS_Store
+**/.DS_Store
