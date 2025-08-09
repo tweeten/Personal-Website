@@ -5,11 +5,20 @@ import { useNavigate } from 'react-router-dom';
 export const BlogPreview = () => {
   const navigate = useNavigate();
   const posts = [{
-    title: 'Placeholder for writings',
-    date: 'July 15, 2025',
-    excerpt: "In this section, I plan to write updates about both my personal and professional life.",
-    category: 'About me'
-  }];
+    title: 'The Wright Stuff',
+    date: 'August 9, 2025',
+    category: 'About me',
+    excerpt: 'Why I decided to build my own website, how I did it, and what I learned.',
+    url: '/blog/stuff'
+  },
+  {
+    title: 'The Wright Shed',
+    date: 'August 9, 2025',
+    category: 'About me',
+    excerpt: 'Crafting the perfect space to be crafty.',
+    url: '/blog/shed'
+  }
+];
   
   return (
     <section className="py-10 md:py-16 bg-border/30 dark:bg-dark-border/20 transition-colors duration-300">
@@ -32,10 +41,10 @@ export const BlogPreview = () => {
           }}
         >
           <div>
-            <h2 className="text-3xl md:text-4xl font-light leading-tight text-dark dark:text-dark-text transition-colors duration-300">
-              Writings (Coming Soon!)
+            <h2 className="text-3xl md:text-4xl font-light leading-tight text-dark dark:text-dark-text transition-colors duration-300 ">
+              Writings
             </h2>
-            <div className="mt-4 w-16 h-1 bg-accent" />
+            <div className="mt-4 w-16 h-1 bg-accent mb-8" />
           </div>
           <button 
             onClick={() => navigate('/blog')}
@@ -46,7 +55,7 @@ export const BlogPreview = () => {
           </button>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-13">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-13 md:gap-16">
           {posts.map((post, i) => (
             <motion.article 
               key={i} 
@@ -66,10 +75,10 @@ export const BlogPreview = () => {
                 duration: 0.6,
                 delay: 0.1 * i
               }}
-              onClick={() => window.open('https://tylertweeten.com/blog/placeholder', '_blank')}
+              onClick={() => navigate(post.url)}
             >
               <div className="h-1 bg-accent/20 group-hover:bg-accent transition-colors duration-300"></div>
-              <div className="p-6 bg-beige dark:bg-dark-surface border border-t-0 border-accent/20 dark:border-dark-border h-full transition-colors duration-300">
+              <div className="p-6 md:p-8 bg-beige dark:bg-dark-surface border border-t-0 border-accent/20 dark:border-dark-border h-full transition-colors duration-300">
                 <span className="text-sm text-accent">{post.category}</span>
                 <h3 className="mt-2 text-xl font-medium text-dark dark:text-dark-text group-hover:text-accent transition-colors duration-300">
                   {post.title}

@@ -2,22 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tylertweeten.com/</loc>
-    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tylertweeten.com/#about</loc>
-    <priority>0.8</priority>
+    <loc>https://tylertweeten.com/about</loc>
   </url>
   <url>
-    <loc>https://tylertweeten.com/#works</loc>
-    <priority>0.8</priority>
+    <loc>https://tylertweeten.com/projects</loc>
   </url>
   <url>
-    <loc>https://tylertweeten.com/#blog</loc>
-    <priority>0.7</priority>
+    <loc>https://tylertweeten.com/blog</loc>
   </url>
   <url>
-    <loc>https://tylertweeten.com/#contact</loc>
-    <priority>0.7</priority>
+    <loc>https://tylertweeten.com/contact</loc>
   </url>
-</urlset> 
+  <url>
+    <loc>https://tylertweeten.com/blog/placeholder</loc>
+  </url>
+</urlset>

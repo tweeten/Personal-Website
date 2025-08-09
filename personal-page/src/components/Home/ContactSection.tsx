@@ -129,7 +129,7 @@ export const ContactSection = () => {
           <div className="mt-21">
             <form onSubmit={handleSubmit} className="space-y-13">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-dark dark:text-dark-text transition-colors duration-300">
+                <label htmlFor="name" className="block text-sm font-medium text-dark dark:text-dark-text transition-colors duration-300 mb-2">
                   Name
                 </label>
                 <div className="mt-1">
@@ -147,7 +147,7 @@ export const ContactSection = () => {
                 </div>
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-dark dark:text-dark-text transition-colors duration-300">
+                <label htmlFor="email" className="block text-sm font-medium text-dark dark:text-dark-text transition-colors duration-300 mt-2 mb-2">
                   Email
                 </label>
                 <div className="mt-1">
@@ -165,7 +165,7 @@ export const ContactSection = () => {
                 </div>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-dark dark:text-dark-text transition-colors duration-300">
+                <label htmlFor="message" className="block text-sm font-medium text-dark dark:text-dark-text transition-colors duration-300 mt-2 mb-2">
                   Message
                 </label>
                 <div className="mt-1">
@@ -184,7 +184,7 @@ export const ContactSection = () => {
                   </p>}
                 </div>
               </div>
-              <div className="flex justify-end">
+              <div className="flex justify-end mt-2">
                 <motion.button 
                   type="submit" 
                   disabled={isSubmitted} 

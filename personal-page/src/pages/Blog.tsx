@@ -1,14 +1,23 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export const Blog = () => {
+  const navigate = useNavigate();
   const posts = [
     {
-      title: 'Placeholder for writings',
-      date: 'July 15, 2025',
-      excerpt: "In this section, I plan to write updates about both my personal and professional life.",
+      title: 'The Wright Stuff',
+      date: 'August 9, 2025',
       category: 'About me',
-      url: '/blog/placeholder'
+      excerpt: 'Why I decided to build my own website, how I did it, and what I learned.',
+      url: '/blog/stuff'
+    },
+    {
+      title: 'The Wright Shed',
+      date: 'August 9, 2025',
+      category: 'About me',
+      excerpt: 'Crafting the perfect space to be crafty.',
+      url: '/blog/shed'
     }
   ];
 
@@ -66,12 +75,11 @@ export const Blog = () => {
                   duration: 0.6,
                   delay: 0.1 * i
                 }}
-                onClick={() => window.open(post.url, '_blank')}
+                onClick={() => navigate(post.url)}
               >
                 <div className="border-l-4 border-accent/20 group-hover:border-accent transition-colors duration-300 pl-6">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <span className="text-sm text-accent font-medium">{post.category}</span>
-                    <time className="text-sm text-dark/60 dark:text-dark-text-secondary transition-colors duration-300">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-end mb-4">
+                    <time className="text-md text-accent font-medium">
                       {post.date}
                     </time>
                   </div>

@@ -10,6 +10,7 @@ import { Blog } from './pages/Blog';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { BlogPost } from './pages/BlogPost';
 
 export function App() {
   return (
@@ -24,6 +25,7 @@ export function App() {
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
