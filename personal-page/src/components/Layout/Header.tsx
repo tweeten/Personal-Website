@@ -15,7 +15,7 @@ export const Header = () => {
     { name: 'Works', href: '/projects', isInternal: true },
     { name: 'Writings', href: '/blog', isInternal: true },
     { name: 'Contact', href: '/contact', isInternal: true },
-    { name: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf?v=b2227150', target: '_blank', isInternal: false },
+    { name: 'My Experience', href: '/Tyler%20Tweeten%20Resume.pdf', target: '_blank', isInternal: false },
   ];
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-beige/80 dark:bg-dark-bg/80 backdrop-blur-sm border-b border-accent/10 dark:border-dark-border/20 transition-colors duration-300">
