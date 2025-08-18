@@ -3,9 +3,12 @@ const cors = require('cors');
 const { Pool } = require('pg');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
+
+const { sendContactNotification } = require('./emailService');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5003;
 
 
 const pool = new Pool({
@@ -60,6 +63,62 @@ app.post('/api/contact', async (req, res) => {
   res.status(200).json({ success: true });
 });
 
+// Test email configuration endpoint
+app.post('/api/test-email', async (req, res) => {
+  try {
+    const { sendContactNotification, testEmailConfig } = require('./emailService');
+    
+    // Test configuration first
+    const configValid = await testEmailConfig();
+    if (!configValid) {
+      return res.status(500).json({ 
+        success: false, 
+        error: 'Email configuration is invalid. Check your environment variables.' 
+      });
+    }
+    
+    // Send test email
+    const testEntry = {
+      name: 'Test User',
+      email: 'test@example.com',
+      message: 'This is a test message to verify email notifications are working.',
+      created_at: new Date().toISOString()
+    };
+    
+    await sendContactNotification([testEntry]);
+    
+    res.status(200).json({ 
+      success: true, 
+      message: 'Test email sent successfully. Check your inbox.' 
+    });
+  } catch (error) {
+    console.error('Test email failed:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
+});
+
+// Debug endpoint to check environment variables
+app.get('/api/debug-env', (req, res) => {
+  const emailVars = {
+    EMAIL_HOST: process.env.EMAIL_HOST,
+    EMAIL_PORT: process.env.EMAIL_PORT,
+    EMAIL_USER: process.env.EMAIL_USER ? '***SET***' : 'NOT SET',
+    EMAIL_PASS: process.env.EMAIL_PASS ? '***SET***' : 'NOT SET',
+    EMAIL_TO: process.env.EMAIL_TO,
+    EMAIL_FROM: process.env.EMAIL_FROM,
+    PORT: process.env.PORT
+  };
+  
+  res.json({
+    success: true,
+    environment: emailVars,
+    message: 'Check if all required email variables are set'
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
@@ -68,19 +127,35 @@ app.listen(port, () => {
 setInterval(async () => {
   let queue = readQueue();
   if (queue.length === 0) return;
+  
+  const processedEntries = [];
   const newQueue = [];
+  
   for (const item of queue) {
     try {
       await pool.query(
         'INSERT INTO contact_messages (name, email, message, created_at) VALUES ($1, $2, $3, $4)',
         [item.name, item.email, item.message, item.created_at]
       );
-      // Success: do not re-add to newQueue
+      // Success: add to processed entries for email notification
+      processedEntries.push(item);
     } catch (err) {
       console.error('Failed to sync queued message:', err);
       newQueue.push(item); // Keep in queue for next attempt
     }
   }
+  
+  // Send email notification if there are processed entries
+  if (processedEntries.length > 0) {
+    try {
+      await sendContactNotification(processedEntries);
+      console.log(`Email notification sent for ${processedEntries.length} processed entries`);
+    } catch (emailError) {
+      console.error('Failed to send email notification:', emailError);
+      // Don't fail the queue processing if email fails
+    }
+  }
+  
   writeQueue(newQueue);
 }, 15 * 60 * 1000); // 15 minutes
 
