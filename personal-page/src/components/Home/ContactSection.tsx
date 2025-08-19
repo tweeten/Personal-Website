@@ -190,7 +190,7 @@ export const ContactSection = () => {
                   disabled={isSubmitted} 
                   className={`group relative inline-flex items-center px-6 py-3 overflow-hidden ${
                     isSubmitted 
-                      ? 'bg-green-600 text-white' 
+                      ? 'bg-green-600 text-accent' 
                       : 'border border-accent text-accent hover:text-beige dark:hover:text-dark-text'
                   } transition-colors duration-300`} 
                   whileHover={!isSubmitted ? { scale: 1.02 } : {}} 
