@@ -70,7 +70,7 @@ export const ContactSection = () => {
       // Start the network request in the background
       const sendMessage = async () => {
         try {
-          const response = await fetch('https://personal-website-wwin.onrender.com/api/contact', {
+          const response = await fetch('/api/contact', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
