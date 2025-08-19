@@ -70,7 +70,8 @@ export const ContactSection = () => {
       // Start the network request in the background
       const sendMessage = async () => {
         try {
-          const response = await fetch('/api/contact', {
+          // Use the direct Netlify function endpoint instead of the redirected /api/contact
+          const response = await fetch('/.netlify/functions/contact', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -193,7 +194,7 @@ export const ContactSection = () => {
                       ? 'bg-green-600 text-accent' 
                       : 'border border-accent text-accent hover:text-beige dark:hover:text-dark-text'
                   } transition-colors duration-300`} 
-                  whileHover={!isSubmitted ? { scale: 1.02 } : {}} 
+                  whileHover={!isSubmitted ? { scale: 1.02 } : {}}
                   whileTap={!isSubmitted ? { scale: 0.98 } : {}}
                 >
                   {isSubmitted ? (

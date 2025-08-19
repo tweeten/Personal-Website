@@ -5,19 +5,30 @@ import { FileTextIcon, DownloadIcon } from 'lucide-react';
 export const OrganicThinking = () => {
   const resumeUrl = '/Tyler%20Tweeten%20Resume.pdf';
   const [pdfLoaded, setPdfLoaded] = useState(false);
+  const [headshotLoaded, setHeadshotLoaded] = useState(false);
+  const [headshotError, setHeadshotError] = useState(false);
   
   return (
     <section className="py-10 md:py-16 bg-beige dark:bg-dark-bg border-t border-border dark:border-dark-border transition-colors duration-300">
       <div className="container mx-auto px-6 mt-0 pt-0">
         <div className="flex justify-center mb-6 mt-4">
-          <img
-            src="/images/headshot.png"
-            alt="Tyler Tweeten headshot"
-            width={128}
-            height={128}
-            className="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-white dark:border-dark-surface transition-colors duration-300"
-            style={{ marginTop: '1.5rem' }}
-          />
+          <div className="relative">
+            {!headshotLoaded && !headshotError && (
+              <div className="w-32 h-32 rounded-full bg-beige dark:bg-dark-surface animate-pulse" />
+            )}
+            <img
+              src="/images/headshot.png"
+              alt="Tyler Tweeten headshot"
+              width={128}
+              height={128}
+              className={`w-32 h-32 rounded-full object-cover shadow-lg border-4 border-white dark:border-dark-surface transition-all duration-300 ${
+                headshotLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ marginTop: '1.5rem' }}
+              onLoad={() => setHeadshotLoaded(true)}
+              onError={() => setHeadshotError(true)}
+            />
+          </div>
         </div>
         <h2 className="text-4xl md:text-5xl font-bold font-sans text-dark dark:text-dark-text text-center mb-8 transition-colors duration-300">
           About Me
