@@ -4,10 +4,50 @@
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Lora:wght@400;600;700&display=swap');
 /* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL */
+
 html {
   font-family: 'Lora', serif;
 }
+
 h1, h2, h3, h4, h5, h6, .font-sans {
   font-family: 'Josefin Sans', 'Inter', system-ui, sans-serif;
 }
+
+/* Custom cursor global overrides */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+  
+  /* Ensure form elements don't show default cursors */
+  input, textarea, select, option {
+    cursor: none !important;
+  }
+  
+  /* Ensure interactive elements don't show default cursors */
+  a, button, [role="button"], [tabindex], .cursor-pointer {
+    cursor: none !important;
+  }
+  
+  /* Override any Tailwind cursor utilities */
+  .cursor-pointer, .cursor-text, .cursor-move, .cursor-not-allowed {
+    cursor: none !important;
+  }
+  
+  /* Handle any remaining edge cases */
+  [contenteditable], [draggable], [spellcheck] {
+    cursor: none !important;
+  }
+  
+  /* Ensure focus states don't show default cursors */
+  input:focus, textarea:focus, select:focus {
+    cursor: none !important;
+  }
+  
+  /* Handle any pseudo-elements */
+  *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 /* Removed hardcoded body background and color since we're using Tailwind dark mode classes */
