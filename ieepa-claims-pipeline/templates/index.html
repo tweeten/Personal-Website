@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEPA Claims Pipeline MVP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .upload-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .upload-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .file-input-group {
+            margin-bottom: 20px;
+        }
+
+        .file-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #667eea;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-export {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-export:hover {
+            background: #218838;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .summary {
+            background: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .summary.active {
+            display: block;
+        }
+
+        .summary h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .summary-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .summary-item strong {
+            display: block;
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .summary-item span {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .results-table.active {
+            display: table;
+        }
+
+        .results-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .results-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .results-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .risk-urgent {
+            background: #fff3cd !important;
+            color: #856404;
+            font-weight: 600;
+        }
+
+        .risk-overdue {
+            background: #f8d7da !important;
+            color: #721c24;
+            font-weight: 600;
+        }
+
+        .risk-safe {
+            background: #d4edda !important;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .error.active {
+            display: block;
+        }
+
+        .currency {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>IEEPA Claims Pipeline MVP</h1>
+            <p>Automated Tariff Refund Analysis & Deadline Tracking</p>
+        </div>
+
+        <div class="content">
+            <div class="upload-section">
+                <h2>Upload ACE Report Files</h2>
+                <form id="uploadForm">
+                    <div class="file-input-group">
+                        <label for="entry_summary">Report 1: Entry Summary (Required)</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="entry_summary" name="entry_summary" accept=".csv" required>
+                        </div>
+                    </div>
+
+                    <div class="file-input-group">
+                        <label for="liquidation_status">Report 2: Liquidation Status (Required)</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="liquidation_status" name="liquidation_status" accept=".csv" required>
+                        </div>
+                    </div>
+
+                    <div class="file-input-group">
+                        <label for="importer_statement">Report 3: Importer Statement (Optional)</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="importer_statement" name="importer_statement" accept=".csv">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn-primary">Process Files</button>
+                        <button type="button" class="btn-secondary" onclick="processMockData()">Use Mock Data</button>
+                        <button type="button" class="btn-export" onclick="exportResults()">Export CSV</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Processing files and calculating refunds...</p>
+            </div>
+
+            <div class="error" id="error"></div>
+
+            <div class="summary" id="summary">
+                <h3>Risk Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <strong id="total-entries">0</strong>
+                        <span>Total Entries</span>
+                    </div>
+                    <div class="summary-item">
+                        <strong id="refund-eligible">0</strong>
+                        <span>Refund Eligible</span>
+                    </div>
+                    <div class="summary-item">
+                        <strong id="urgent-deadlines">0</strong>
+                        <span>Urgent Deadlines (&lt;90 days)</span>
+                    </div>
+                    <div class="summary-item">
+                        <strong id="overdue-deadlines">0</strong>
+                        <span>Overdue Deadlines</span>
+                    </div>
+                    <div class="summary-item">
+                        <strong id="total-refund">$0.00</strong>
+                        <span>Total Refund Value</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="results-table" id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>Entry Number</th>
+                            <th>HTS Code</th>
+                            <th>Duties Paid</th>
+                            <th>Liquidation Date</th>
+                            <th>Liquidation Status</th>
+                            <th>Protest Status</th>
+                            <th>Refund Due</th>
+                            <th>Protest Deadline</th>
+                            <th>Days Remaining</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            const entrySummary = document.getElementById('entry_summary').files[0];
+            const liquidationStatus = document.getElementById('liquidation_status').files[0];
+            const importerStatement = document.getElementById('importer_statement').files[0];
+
+            if (!entrySummary || !liquidationStatus) {
+                showError('Please select at least Entry Summary and Liquidation Status files.');
+                return;
+            }
+
+            formData.append('entry_summary', entrySummary);
+            formData.append('liquidation_status', liquidationStatus);
+            if (importerStatement) {
+                formData.append('importer_statement', importerStatement);
+            }
+
+            await processFiles(formData);
+        });
+
+        async function processFiles(formData) {
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const summary = document.getElementById('summary');
+            const table = document.getElementById('resultsTable');
+
+            loading.classList.add('active');
+            error.classList.remove('active');
+            summary.classList.remove('active');
+            table.classList.remove('active');
+
+            try {
+                const response = await fetch('/api/process', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.detail || 'Processing failed');
+                }
+
+                currentData = result.data;
+                displayResults(result);
+            } catch (err) {
+                showError(err.message);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        async function processMockData() {
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const summary = document.getElementById('summary');
+            const table = document.getElementById('resultsTable');
+
+            loading.classList.add('active');
+            error.classList.remove('active');
+            summary.classList.remove('active');
+            table.classList.remove('active');
+
+            try {
+                const response = await fetch('/api/process-mock', {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.detail || 'Processing failed');
+                }
+
+                currentData = result.data;
+                displayResults(result);
+            } catch (err) {
+                showError(err.message);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        function displayResults(result) {
+            const summary = document.getElementById('summary');
+            const table = document.getElementById('resultsTable');
+            const tbody = document.getElementById('resultsBody');
+
+            // Update summary
+            const s = result.summary;
+            document.getElementById('total-entries').textContent = s.total_entries;
+            document.getElementById('refund-eligible').textContent = s.refund_eligible_count;
+            document.getElementById('urgent-deadlines').textContent = s.urgent_deadlines;
+            document.getElementById('overdue-deadlines').textContent = s.overdue_deadlines;
+            document.getElementById('total-refund').textContent = formatCurrency(s.total_refund_value);
+
+            summary.classList.add('active');
+
+            // Populate table
+            tbody.innerHTML = '';
+            result.data.forEach(row => {
+                const tr = document.createElement('tr');
+                
+                // Determine risk class
+                let riskClass = 'risk-safe';
+                const daysRemaining = row.days_remaining;
+                if (daysRemaining !== null && daysRemaining < 0) {
+                    riskClass = 'risk-overdue';
+                } else if (daysRemaining !== null && daysRemaining < 90) {
+                    riskClass = 'risk-urgent';
+                }
+
+                tr.className = riskClass;
+
+                tr.innerHTML = `
+                    <td>${row.entry_number}</td>
+                    <td>${row.hts_code || 'N/A'}</td>
+                    <td class="currency">${formatCurrency(row.duties_paid)}</td>
+                    <td>${row.liquidation_date || 'N/A'}</td>
+                    <td>${row.liquidation_status || 'N/A'}</td>
+                    <td>${row.protest_status || 'None'}</td>
+                    <td class="currency">${formatCurrency(row.calculated_refund_due)}</td>
+                    <td>${row.protest_deadline || 'N/A'}</td>
+                    <td class="text-center">${daysRemaining !== null ? daysRemaining : 'N/A'}</td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+
+            table.classList.add('active');
+        }
+
+        function formatCurrency(value) {
+            if (value === null || value === undefined) return '$0.00';
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            }).format(value);
+        }
+
+        function showError(message) {
+            const error = document.getElementById('error');
+            error.textContent = message;
+            error.classList.add('active');
+        }
+
+        async function exportResults() {
+            if (!currentData) {
+                showError('Please process data first before exporting.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/export');
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'ieepa_claims_results.csv';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (err) {
+                showError('Export failed: ' + err.message);
+            }
+        }
+    </script>
+</body>
+</html>
+
