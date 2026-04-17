@@ -4,10 +4,18 @@ import { ExternalLinkIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import peersignalimg from "../../assets/images/peersignal.png";
 import favicoimg from "../../assets/images/favico.png";
+import tariffremedyimg from "../../assets/images/tariffremedy.png";
 
 export const WorksGallery = () => {
   const navigate = useNavigate();
   const projects = [{
+    title: 'TariffRemedy.com',
+    category: 'Full Stack / AI',
+    image: tariffremedyimg,
+    color: '#D3A95C',
+    url: 'https://tariffremedy.com',
+    description: 'A fintech app to help customs brokers and importers of record recover unconstitutional IEEPA tariff funds. Demonstrates my understanding of how to build AI powered data scraping pipelines, full stack dev proficiency, and good UX principles.'
+  }, {
     title: 'CaptuRE Recycling',
     category: 'Web Design',
     image: favicoimg,
