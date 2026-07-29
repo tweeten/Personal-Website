@@ -4,6 +4,7 @@ import { ExternalLinkIcon } from 'lucide-react';
 import peersignalimg from "../assets/images/peersignal.png";
 import favicoimg from "../assets/images/favico.png";
 import tariffremedyimg from "../assets/images/tariffremedy.png";
+import gathrimg from "../assets/images/gathr.png";
 
 export const Projects = () => {
   const projects = [
@@ -14,6 +15,14 @@ export const Projects = () => {
       color: '#D3A95C',
       url: 'https://tariffremedy.com',
       description: 'A fintech app to help customs brokers and importers of record recover unconstitutional IEEPA tariff funds. Demonstrates my understanding of how to build AI powered data scraping pipelines, full stack dev proficiency, and good UX principles.'
+    },
+    {
+      title: 'Gathr',
+      category: 'Full Stack / AI',
+      image: gathrimg,
+      color: '#D3A95C',
+      url: 'https://gathrgroups.com',
+      description: 'A B2C product that connects local golfers who don\'t have a regular group to play with. Matches players by round preferences and creates durable groups ("Crews") if the first round played is a good fit. Demonstrates several technical proficiencies including Product Management and Market Research, UX Design, Backend Engineering, Data Engineering (including Scraping and ELT processes), and API Management. Launched to a pilot group of 15 users as of July 28th, 2026.'
     },
     {
       title: 'CaptuRE Recycling',

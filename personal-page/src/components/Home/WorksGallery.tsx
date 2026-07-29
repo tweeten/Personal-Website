@@ -2,9 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLinkIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import peersignalimg from "../../assets/images/peersignal.png";
-import favicoimg from "../../assets/images/favico.png";
 import tariffremedyimg from "../../assets/images/tariffremedy.png";
+import gathrimg from "../../assets/images/gathr.png";
 
 export const WorksGallery = () => {
   const navigate = useNavigate();
@@ -16,19 +15,12 @@ export const WorksGallery = () => {
     url: 'https://tariffremedy.com',
     description: 'A fintech app to help customs brokers and importers of record recover unconstitutional IEEPA tariff funds. Demonstrates my understanding of how to build AI powered data scraping pipelines, full stack dev proficiency, and good UX principles.'
   }, {
-    title: 'CaptuRE Recycling',
-    category: 'Web Design',
-    image: favicoimg,
+    title: 'Gathr',
+    category: 'Full Stack / AI',
+    image: gathrimg,
     color: '#D3A95C',
-    url: 'https://capturerecycling.com',
-    description: 'Under construction as of 7/2025. A website for a recycling company that allows users to learn about the company, view their products, and contact them.'
-  }, {
-    title: 'peersignal.io',
-    category: 'Product Development',
-    image: peersignalimg,
-    color: '#D3A95C',
-    url: 'https://peersignal-io.lovable.app/',
-    description: 'Under construction as of 7/2025. My personal project to build a financial intelligence platform using publicly available data to help investors make better decisions.'
+    url: 'https://gathrgroups.com',
+    description: 'A B2C product that connects local golfers who don\'t have a regular group to play with. Matches players by round preferences and creates durable groups ("Crews") if the first round played is a good fit. Demonstrates several technical proficiencies including Product Management and Market Research, UX Design, Backend Engineering, Data Engineering (including Scraping and ELT processes), and API Management. Launched to a pilot group of 15 users as of July 28th, 2026.'
   }];
   
   return (
