@@ -22,7 +22,7 @@ export const Projects = () => {
       image: gathrimg,
       color: '#D3A95C',
       url: 'https://gathrgroups.com',
-      description: 'A B2C product that connects local golfers who don\'t have a regular group to play with. Matches players by round preferences and creates durable groups ("Crews") if the first round played is a good fit. Demonstrates several technical proficiencies including Product Management and Market Research, UX Design, Backend Engineering, Data Engineering (including Scraping and ELT processes), and API Management. Launched to a pilot group of 15 users as of July 28th, 2026.'
+      description: 'A B2C product that connects local golfers who don\'t have a regular group to play with. Matches players by round preferences and creates durable groups ("Crews") if the first round played is a good fit. Demonstrates several technical proficiencies including Product Management and Market Research, UX Design, Backend Engineering, Data Engineering (including Scraping and ELT processes), and API Management. Launched to a pilot group of 90 users as of August 28th, 2026, signifying a 6x jump in month over month adoption.'
     },
     {
       title: 'CaptuRE Recycling',
